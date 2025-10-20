@@ -1,0 +1,32 @@
+{
+  "analyzer.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Determine the dominant emotion of the user message.\n\nWhen analyzing the user message, follow these detailed steps and considerations:\n\n1.  **Identify Explicit Emotion Words:** Give high priority to words in the message that directly state or describe emotions (e.g., \"embarrassed,\" \"humiliated,\" \"happy,\" \"angry,\" \"sad,\" \"fearful\"). These are strong indicators. However, be aware that explicit negative emotional language can sometimes describe a *secondary* emotion or a rhetorical device, and the *dominant* emotion might lie deeper, especially when the user is making an observation or expressing an achievement.\n\n2.  **Analyze Contextual Information:** Carefully examine the surrounding details, the specific situation described, and any implied meanings. The broader context can significantly influence the interpretation of explicit emotions or reveal emotions that are not directly stated. For example, the context of being an \"attack victim\" amplifies negative feelings of shame and distress.\n\n3.  **Infer the User's Perspective and Stance (User-Centric Analysis) - *Crucial for Overriding Literal Interpretations*:**\n    *   Crucially, consider *how the user feels about the situation, observation, or judgment they are describing*, rather than just the literal content of what is being discussed.\n    *   **Prioritize the User's Act of Sharing/Observing:** If the user expresses an opinion, makes an observation or judgment, or shares a personal development, determine if the *primary emotion driving the message* stems from:\n        *   A sense of satisfaction, vindication, or pleasure in their own astute observation or the implication of that observation. This could indicate `joy` or `amusement` if they feel they have correctly identified a flaw, an inconsistency, or a deeper truth, *even if the subject matter itself isn't inherently positive or if explicit negative words are used to describe the situation*. In these cases, the `joy` is in the *insight itself*, the *act of understanding*, or the *act of articulating it clearly*. For example, saying \"I hate this feeling to see you that way\" might be a conventional expression of dismay, but the underlying dominant emotion could be the `joy` of having deeply understood and articulated the other person's self-limitation.\n        *   A sense of pride, satisfaction, or happiness in a personal achievement, a sustained positive effort, or a current positive state, even if they follow it with a nuanced or slightly critical observation about that achievement. The `joy` from the initial achievement or positive state often *predominates* over subsequent minor dissatisfactions or desired improvements. For example, \"I pray regularly now my prayer life doesnt feel passionate\" could be driven by `joy` in the regularity, with the lack of passion being a secondary observation.\n    *   **Distinguish between Task Aversion and Fear:** When a user describes strong negative feelings about a *task or obligation* (e.g., \"i have a task i hate to do,\" \"it makes me feel like I won't be tortured for long\"), the dominant emotion is typically `anger`, `frustration`, or `resentment` towards the unpleasantness or perceived burden of the task, rather than `fear` of actual physical harm or danger from the task itself. The word \"tortured\" in such contexts signifies intense dislike, annoyance, or indignation at being subjected to something unpleasant, not terror.\n\n4.  **Identify the Root Cause or Primary Driver of the Emotion:**\n    *   Messages can often contain multiple layers of feelings (e.g., an action driven by anger, followed by regret). Your task is to pinpoint the *fundamental, originating, or dominant emotion* that drives the user's expression in the message.\n    *   **Do not be misled by secondary or reflective emotions:** The dominant emotion might not be the most explicitly stated one, especially if explicit negative words are used to describe a *situation* while the user's underlying `joy` comes from their *insight* into that situation or their *achievement* related to it.\n    *   For instance, if a user describes taking hurtful actions (e.g., \"i made her feel like crap and i said i hated her\") and then provides a *reason* or *justification* for those actions (e.g., \"because shes never home anymore\"), assess whether that reason points to an underlying `anger`, `frustration`, or `resentment` that motivated the hurtful behavior. In such cases, the anger might be the dominant emotion, even if the user also implicitly expresses subsequent `regret` or `sadness` about their actions. Strong negative expressions like \"I hated her\" are often direct manifestations of intense anger or resentment.\n\n5.  **Group Related Specific Emotions under Broader Categories:** If several specific emotions are expressed (e.g., \"embarrassed\" and \"humiliated\"), categorize them under the most appropriate broader emotional umbrella (e.g., `sadness` for feelings of shame and distress).\n\n6.  **Acknowledge Nuance and Prioritize:** If multiple emotions seem to be present, identify and state the single *dominant* emotion. Your reasoning should explain the presence of other potential emotions and clearly justify why you selected the dominant one.\n\nYour output must include a `reasoning` field, providing a detailed, step-by-step explanation for your choice, and an `emotion` field, stating the single dominant emotion in lowercase.",
+      "fields": [
+        {
+          "prefix": "User Message:",
+          "description": "${user_message}"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Emotion:",
+          "description": "${emotion}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.11",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}
