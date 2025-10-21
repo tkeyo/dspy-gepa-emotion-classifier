@@ -26,6 +26,6 @@ GEMINI_API_KEY=your_api_key_here
 | Approach            | Baseline | Optimized |
 | ------------------- | -------- | --------- |
 | dspy.Predict        | 46%      | 54%       |
-| dspy.ChainOfThought | 50%      | 56%       |
+| dspy.ChainOfThought | 50%      | 54%       |
 
 GEPA automatically improves prompts by learning nuanced emotional interpretation rules from training feedback.
